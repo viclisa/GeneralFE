@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
 import { DropzoneArea } from 'material-ui-dropzone';
-import { updateDropZoneImage } from '../../actions/imageFileActions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { uploadImage } from '../../actions/imageFileActions';
 
 class DropzoneAreaExt extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      files: [],
+      image: {},
       errors: {}
     };
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.image) {
+      this.setState({ image: nextProps.image });
+      const imageData = {
+        files: this.state.files
+      };
+      if (nextProps.image.uploading) {
+        this.props.uploadImage(imageData, this.props.history);
+      }
+    }
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
   handleChange(files) {
-    const imageData = {
+    this.setState({
       files: files
-    };
-    // this.props.uploadImage(imageData, this.props.history);
-    this.props.updateDropZoneImage(imageData);
+    });
   }
   render() {
     const { errors } = this.state;
@@ -24,12 +39,14 @@ class DropzoneAreaExt extends Component {
   }
 }
 DropzoneAreaExt.propTypes = {
+  image: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-  errors: state.errors
+  errors: state.errors,
+  image: state.image
 });
 export default connect(
   mapStateToProps,
-  { updateDropZoneImage }
+  { uploadImage }
 )(DropzoneAreaExt);

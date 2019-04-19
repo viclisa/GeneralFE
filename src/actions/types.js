@@ -15,4 +15,4 @@ export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
 export const DELETE_IMAGE = 'DELETE_IMAGE';
-export const UPDATE_DROPZONE_IMAGE = 'UPDATE_DROPZONE_IMAGE';
+export const UPLOADING_IMAGE = 'UPLOADING_IMAGE';

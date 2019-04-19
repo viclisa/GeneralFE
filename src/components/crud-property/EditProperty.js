@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -7,7 +7,7 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProperty } from '../../actions/propertyActions';
-import { uploadImage } from '../../actions/imageFileActions';
+import { uploadingImage } from '../../actions/imageFileActions';
 import { MDCTextField } from '@material/textfield';
 import { MDCRipple } from '@material/ripple';
 import isEmpty from '../../validation/is-empty';
@@ -65,8 +65,7 @@ class EditProperty extends Component {
   }
 
   onClick(e) {
-    alert('que tocas');
-    this.DropzoneAreaExt.uploadImage();
+    this.props.uploadingImage();
   }
 
   onChange(e) {
@@ -160,5 +159,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createProperty, uploadImage }
+  { createProperty, uploadingImage }
 )(EditProperty);

@@ -1,5 +1,10 @@
-import { UPLOAD_IMAGE, DELETE_IMAGE, UPDATE_DROPZONE_IMAGE } from './types';
+import { UPLOAD_IMAGE, DELETE_IMAGE, UPLOADING_IMAGE } from './types';
 
+export const uploadingImage = () => dispatch => {
+  dispatch({
+    type: UPLOADING_IMAGE
+  });
+};
 // Upload image
 export const uploadImage = imageData => dispatch => {
   // Inicializar el proveedor de credenciales de Amazon Cognito
