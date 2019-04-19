@@ -17,6 +17,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
+import CreateProperty from './components/crud-property/CreateProperty';
 import EditProfile from './components/edit-profile/EditProfile';
 import AddExperience from './components/add-credentials/AddExperience';
 import AddEducation from './components/add-credentials/AddEducation';
@@ -27,6 +28,7 @@ import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
 
 import './App.scss';
+import PropertyDetailOwner from './components/property-detail/PropertyDetailOwner';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -64,12 +66,24 @@ class App extends Component {
               <Route exact path='/profile/:handle' component={Profile} />
               <Switch>
                 <PrivateRoute exact path='/dashboard' component={Dashboard} />
+                <PrivateRoute
+                  exact
+                  path='/property'
+                  component={PropertyDetailOwner}
+                />
               </Switch>
               <Switch>
                 <PrivateRoute
                   exact
                   path='/create-profile'
                   component={CreateProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path='/create-property'
+                  component={CreateProperty}
                 />
               </Switch>
               <Switch>

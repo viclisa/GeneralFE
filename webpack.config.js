@@ -40,7 +40,15 @@ module.exports = [
       filename: 'bundle.js'
     },
     devServer: {
-      contentBase: './dist'
+      contentBase: './dist',
+
+      port: 9000,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:5000',
+          secure: false
+        }
+      }
     },
     module: {
       rules: [

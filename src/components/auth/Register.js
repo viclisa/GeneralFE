@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
+import { MDCTextField } from '@material/textfield';
+import Logo from '../common/Logo';
 
 class Register extends Component {
   constructor() {
@@ -19,8 +21,12 @@ class Register extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/property');
     }
+    const name = new MDCTextField(document.querySelector('.name'));
+    const email = new MDCTextField(document.querySelector('.email'));
+    const password = new MDCTextField(document.querySelector('.password'));
+    const password2 = new MDCTextField(document.querySelector('.password2'));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,7 +37,7 @@ class Register extends Component {
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   onSubmit = e => {
     e.preventDefault();
@@ -44,54 +50,67 @@ class Register extends Component {
     };
 
     this.props.registerUser(newUser, this.props.history);
-  }
+  };
 
   render() {
     const { errors } = this.state;
 
     return (
-      <div className="register">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">
+      <div>
+        <Logo x='0' y='0' width='48px' height='48px' viewBox='24' />
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-8 m-auto'>
+              <h1 className='display-4 text-center'>Sign Up</h1>
+              <p className='lead text-center'>
                 Create your DevConnector account
               </p>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="Name"
-                  name="name"
+                  placeholder='Name'
+                  name='name'
+                  id='name-input'
+                  matClassName='name'
                   value={this.state.name}
                   onChange={this.onChange}
                   error={errors.name}
                 />
                 <TextFieldGroup
-                  placeholder="Email"
-                  name="email"
-                  type="email"
+                  placeholder='Email'
+                  name='email'
+                  type='email'
+                  id='email-input'
+                  matClassName='email'
                   value={this.state.email}
                   onChange={this.onChange}
                   error={errors.email}
-                  info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
+                  info='This site uses Gravatar so if you want a profile image, use a Gravatar email'
                 />
                 <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
-                  type="password"
+                  placeholder='Password'
+                  name='password'
+                  type='password'
+                  id='password-input'
+                  matClassName='password'
                   value={this.state.password}
                   onChange={this.onChange}
                   error={errors.password}
                 />
                 <TextFieldGroup
-                  placeholder="Confirm Password"
-                  name="password2"
-                  type="password"
+                  placeholder='Confirm Password'
+                  name='password2'
+                  type='password'
+                  id='password2-input'
+                  matClassName='password2'
                   value={this.state.password2}
                   onChange={this.onChange}
                   error={errors.password2}
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <div className='button-container'>
+                  <button className='mdc-button mdc-button--raised next'>
+                    <span className='mdc-button__label'>Next</span>
+                  </button>
+                </div>
               </form>
             </div>
           </div>
@@ -112,4 +131,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { registerUser })(withRouter(Register));
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));

@@ -6,23 +6,37 @@ const TextAreaFieldGroup = ({
   name,
   placeholder,
   value,
+  edit,
   error,
   info,
   onChange
 }) => {
   return (
-    <div className="form-group">
+    <div className='mdc-text-field mdc-text-field--textarea'>
       <textarea
-        className={classnames('form-control form-control-lg', {
-          'is-invalid': error
-        })}
+        id='textarea'
+        className='mdc-text-field__input'
+        rows='8'
+        cols='40'
         placeholder={placeholder}
         name={name}
         value={value}
         onChange={onChange}
       />
-      {info && <small className="form-text text-muted">{info}</small>}
-      {error && <div className="invalid-feedback">{error}</div>}
+      <div className='mdc-notched-outline'>
+        <div className='mdc-notched-outline__leading' />
+        <div className='mdc-notched-outline__notch'>
+          <label
+            htmlFor='textarea'
+            className={classnames('mdc-floating-label', {
+              'mdc-floating-label--float-above': edit
+            })}
+          >
+            Textarea Label
+          </label>
+        </div>
+        <div className='mdc-notched-outline__trailing' />
+      </div>
     </div>
   );
 };
