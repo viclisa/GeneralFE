@@ -10,6 +10,7 @@ class DropzoneAreaExt extends Component {
     this.state = {
       files: [],
       image: {},
+      property: {},
       errors: {}
     };
   }
@@ -17,6 +18,7 @@ class DropzoneAreaExt extends Component {
     if (nextProps.image) {
       this.setState({ image: nextProps.image });
       const imageData = {
+        propertyId: this.props.property.id,
         files: this.state.files
       };
       if (nextProps.image.uploading) {
@@ -40,10 +42,12 @@ class DropzoneAreaExt extends Component {
 }
 DropzoneAreaExt.propTypes = {
   image: PropTypes.object.isRequired,
+  property: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
   errors: state.errors,
+  property: state.property,
   image: state.image
 });
 export default connect(

@@ -31,7 +31,6 @@ function getStyleUse(bundleFilename) {
     }
   ];
 }
-
 module.exports = [
   {
     entry: './src/index.js',

@@ -10,6 +10,24 @@ body {
   margin: 0;
 }
 
+.landing {
+  position: relative;
+  background: url('./components/common/spinner.gif') no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin-top: -24px;
+  margin-bottom: -50px;
+}
+
+.landing-inner {
+  padding-top: 80px;
+}
+
+.DropzoneArea-dropZone-103 {
+  z-index: 1;
+}
+
 .fileuploader {
   position: relative;
   background: white;

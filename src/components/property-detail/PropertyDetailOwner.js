@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getCurrentProperty } from '../../actions/propertyActions';
 import Spinner from '../common/Spinner';
 import EditProperty from '../crud-property/EditProperty';
+import CarouselExt from '../carousel/CarouselExt';
 
 class PropertyDetailOwner extends Component {
   componentDidMount() {
@@ -43,19 +44,9 @@ class PropertyDetailOwner extends Component {
     }
 
     return (
-      <div className='mdc-layout-grid'>
-        <div className='mdc-layout-grid__inner'>
-          <div className='mdc-layout-grid__cell'>cèl·lules</div>
-          <div className='mdc-layout-grid__cell'>
-            {propertyDetailOwnerContent}
-          </div>
-          <div className='mdc-layout-grid__cell'>cèl·lules</div>
-        </div>
-        <div className='mdc-layout-grid__inner'>
-          <div className='mdc-layout-grid__cell'>cèl·lules</div>
-          <div className='mdc-layout-grid__cell'>cèl·lules</div>
-          <div className='mdc-layout-grid__cell'>cèl·lules</div>
-        </div>
+      <div>
+        <CarouselExt />
+        {propertyDetailOwnerContent}
       </div>
     );
   }

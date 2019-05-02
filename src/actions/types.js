@@ -16,3 +16,4 @@ export const DELETE_POST = 'DELETE_POST';
 export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
 export const DELETE_IMAGE = 'DELETE_IMAGE';
 export const UPLOADING_IMAGE = 'UPLOADING_IMAGE';
+export const SAVE_IMAGE = 'SAVE_IMAGE';

@@ -125,7 +125,7 @@ class EditProperty extends Component {
             edit='true'
             info='Tell us a little about the property'
           />
-          <DropzoneAreaExt />
+          <DropzoneAreaExt propertyId={this.state.property.id} />
 
           <div className='button-container'>
             <button

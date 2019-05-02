@@ -130,44 +130,15 @@ class Navbar extends Component {
       </ul>
     );
     return (
-      <div>
-        <TopAppBar
-          navIcon={this.renderNavIcon()}
-          short={false}
-          prominent={false}
-          fixed={false}
-          alwaysCollapsed={false}
-          title='Mountain View, CA'
-          actionItems={this.actionItems}
-        />
-        <nav className='navbar navbar-expand-sm navbar-dark bg-dark mb-4'>
-          <div className='container'>
-            <Link className='navbar-brand' to='/'>
-              DevConnector
-            </Link>
-            <button
-              className='navbar-toggler'
-              type='button'
-              data-toggle='collapse'
-              data-target='#mobile-nav'
-            >
-              <span className='navbar-toggler-icon' />
-            </button>
-
-            <div className='collapse navbar-collapse' id='mobile-nav'>
-              <ul className='navbar-nav mr-auto'>
-                <li className='nav-item'>
-                  <Link className='nav-link' to='/profiles'>
-                    {' '}
-                    Developers
-                  </Link>
-                </li>
-              </ul>
-              {isAuthenticated ? authLinks : guestLinks}
-            </div>
-          </div>
-        </nav>
-      </div>
+      <TopAppBar
+        navIcon={this.renderNavIcon()}
+        short={false}
+        prominent={false}
+        fixed={false}
+        alwaysCollapsed={false}
+        title='Mountain View, CA'
+        actionItems={this.actionItems}
+      />
     );
   }
   renderNavIcon() {

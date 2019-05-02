@@ -1,10 +1,36 @@
-import { UPLOAD_IMAGE, DELETE_IMAGE, UPLOADING_IMAGE } from './types';
+import axios from 'axios';
+import {
+  UPLOAD_IMAGE,
+  DELETE_IMAGE,
+  UPLOADING_IMAGE,
+  SAVE_IMAGE
+} from './types';
+import uuidv1 from 'uuid/v1';
 
 export const uploadingImage = () => dispatch => {
   dispatch({
     type: UPLOADING_IMAGE
   });
 };
+
+// Save Image reference on Mongo
+export const saveImage = imageData => dispatch => {
+  axios
+    .post('/api/images', imageData)
+    .then(res =>
+      dispatch({
+        type: SAVE_IMAGE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // Upload image
 export const uploadImage = imageData => dispatch => {
   // Inicializar el proveedor de credenciales de Amazon Cognito
@@ -26,7 +52,6 @@ export const uploadImage = imageData => dispatch => {
       },
       (err, data) => {
         if (data) {
-          console.log(data);
           dispatch({
             type: UPLOAD_IMAGE,
             payload: data
@@ -36,8 +61,28 @@ export const uploadImage = imageData => dispatch => {
         }
       }
     );
+    const mongoImage = {
+      propertyId: imageData.propertyId,
+      name: file.name,
+      url: ''
+    };
+    axios
+      .post('/api/image', mongoImage)
+      .then(res =>
+        dispatch({
+          type: SAVE_IMAGE,
+          payload: res.data
+        })
+      )
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        })
+      );
   });
 };
+
 // TODO PROBAR
 // Delete image
 export const deleteImage = imageData => dispatch => {

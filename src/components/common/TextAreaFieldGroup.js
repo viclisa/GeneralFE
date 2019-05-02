@@ -9,8 +9,10 @@ const TextAreaFieldGroup = ({
   edit,
   error,
   info,
+  matClassName,
   onChange
 }) => {
+  const divClassName = 'mdc-text-field ' + matClassName;
   return (
     <div className='mdc-text-field mdc-text-field--textarea'>
       <textarea
