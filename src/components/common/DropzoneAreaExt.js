@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { DropzoneArea } from 'material-ui-dropzone';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { uploadImage } from '../../actions/imageFileActions';
+import { uploadImage, saveImage } from '../../actions/imageFileActions';
 
 class DropzoneAreaExt extends Component {
   constructor(props) {
@@ -23,6 +23,13 @@ class DropzoneAreaExt extends Component {
       };
       if (nextProps.image.uploading) {
         this.props.uploadImage(imageData, this.props.history);
+      } else if (nextProps.image.saving) {
+        const mongoImage = {
+          propertyId: nextProps.property.property._id,
+          name: nextProps.image.image.key,
+          url: nextProps.image.image.Location
+        };
+        this.props.saveImage(mongoImage, this.props.history);
       }
     }
 
@@ -52,5 +59,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { uploadImage }
+  { uploadImage, saveImage }
 )(DropzoneAreaExt);

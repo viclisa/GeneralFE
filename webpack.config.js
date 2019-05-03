@@ -65,8 +65,16 @@ module.exports = [
           ]
         },
         {
-          test: /\.(jpe?g|png|gif|svg)$/i,
-          loader: 'file-loader?name=/public/icons/[name].[ext]'
+          test: /\.(png|jp(e*)g|gif|svg)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                name: 'images/[hash]-[name].[ext]',
+                publicPath: null
+              }
+            }
+          ]
         }
       ]
     },
@@ -91,6 +99,18 @@ module.exports = [
         {
           test: /login.scss$/,
           use: getStyleUse('bundle-login.css')
+        },
+        {
+          test: /\.(png|jp(e*)g|gif|svg)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                name: 'images/[hash]-[name].[ext]',
+                publicPath: null
+              }
+            }
+          ]
         }
       ]
     }

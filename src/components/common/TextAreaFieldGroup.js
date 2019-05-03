@@ -14,30 +14,32 @@ const TextAreaFieldGroup = ({
 }) => {
   const divClassName = 'mdc-text-field ' + matClassName;
   return (
-    <div className='mdc-text-field mdc-text-field--textarea'>
-      <textarea
-        id='textarea'
-        className='mdc-text-field__input'
-        rows='8'
-        cols='40'
-        placeholder={placeholder}
-        name={name}
-        value={value}
-        onChange={onChange}
-      />
-      <div className='mdc-notched-outline'>
-        <div className='mdc-notched-outline__leading' />
-        <div className='mdc-notched-outline__notch'>
-          <label
-            htmlFor='textarea'
-            className={classnames('mdc-floating-label', {
-              'mdc-floating-label--float-above': edit
-            })}
-          >
-            Textarea Label
-          </label>
+    <div>
+      <div className='mdc-text-field mdc-text-field--textarea'>
+        <textarea
+          id='textarea'
+          className='mdc-text-field__input'
+          rows='8'
+          cols='40'
+          placeholder={placeholder}
+          name={name}
+          value={value}
+          onChange={onChange}
+        />
+        <div className='mdc-notched-outline'>
+          <div className='mdc-notched-outline__leading' />
+          <div className='mdc-notched-outline__notch'>
+            <label
+              htmlFor='textarea'
+              className={classnames('mdc-floating-label', {
+                'mdc-floating-label--float-above': edit
+              })}
+            >
+              Short Description
+            </label>
+          </div>
+          <div className='mdc-notched-outline__trailing' />
         </div>
-        <div className='mdc-notched-outline__trailing' />
       </div>
     </div>
   );

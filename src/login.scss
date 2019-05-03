@@ -12,7 +12,7 @@ body {
 
 .landing {
   position: relative;
-  background: url('./components/common/spinner.gif') no-repeat;
+  background: url('./img/barcelona-spain-skyline_u-l-q1arj960.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -168,6 +168,12 @@ body {
   }
 
   display: block;
+  width: 300px;
+  margin: 20px auto;
+}
+
+.mdc-text-field--textarea {
+  display: flex;
   width: 300px;
   margin: 20px auto;
 }

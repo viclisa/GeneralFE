@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {
+  GET_ERRORS,
   UPLOAD_IMAGE,
   DELETE_IMAGE,
   UPLOADING_IMAGE,
@@ -44,7 +45,7 @@ export const uploadImage = imageData => dispatch => {
     }
   });
   imageData.files.forEach(file => {
-    s3Client.putObject(
+    s3Client.upload(
       {
         Key: file.name,
         ContentType: file.type,
@@ -61,25 +62,6 @@ export const uploadImage = imageData => dispatch => {
         }
       }
     );
-    const mongoImage = {
-      propertyId: imageData.propertyId,
-      name: file.name,
-      url: ''
-    };
-    axios
-      .post('/api/image', mongoImage)
-      .then(res =>
-        dispatch({
-          type: SAVE_IMAGE,
-          payload: res.data
-        })
-      )
-      .catch(err =>
-        dispatch({
-          type: GET_ERRORS,
-          payload: err.response.data
-        })
-      );
   });
 };
 

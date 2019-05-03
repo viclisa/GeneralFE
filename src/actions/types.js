@@ -17,3 +17,5 @@ export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
 export const DELETE_IMAGE = 'DELETE_IMAGE';
 export const UPLOADING_IMAGE = 'UPLOADING_IMAGE';
 export const SAVE_IMAGE = 'SAVE_IMAGE';
+export const GET_IMAGES = 'GET_IMAGES';
+export const IMAGE_LOADING = 'IMAGE_LOADING';
